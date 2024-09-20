@@ -1,21 +1,21 @@
-import {beforeEach, describe, expect, jest, test} from '@jest/globals'
 import {renderHook} from '@testing-library/react'
 import scrollIntoView from 'scroll-into-view-if-needed'
+import {beforeEach, describe, expect, test, vi} from 'vitest'
 
 import * as useDidUpdate from '../useDidUpdate'
 import {useScrollIntoViewOnFocusWithin} from '../useScrollIntoViewOnFocusWithin'
 
-jest.mock('scroll-into-view-if-needed', () => jest.fn())
+vi.mock('scroll-into-view-if-needed', () => vi.fn())
 
 describe('useScrollIntoViewOnFocusWithin', () => {
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
 
   test('should scroll when hasFocusWithin is true', () => {
     const elementRef = {current: document.createElement('div')}
     const hasFocusWithin = true
-    const useDidUpdateSpy = jest.spyOn(useDidUpdate, 'useDidUpdate')
+    const useDidUpdateSpy = vi.spyOn(useDidUpdate, 'useDidUpdate')
 
     renderHook(() => useScrollIntoViewOnFocusWithin(elementRef, hasFocusWithin))
 
@@ -27,7 +27,7 @@ describe('useScrollIntoViewOnFocusWithin', () => {
   test('should scroll when hasFocusWithin changes from false to true', () => {
     const elementRef = {current: document.createElement('div')}
     const hasFocusWithin = false
-    const useDidUpdateSpy = jest.spyOn(useDidUpdate, 'useDidUpdate')
+    const useDidUpdateSpy = vi.spyOn(useDidUpdate, 'useDidUpdate')
 
     const {rerender} = renderHook(
       (props) => useScrollIntoViewOnFocusWithin(elementRef, props.hasFocusWithin),
@@ -41,7 +41,7 @@ describe('useScrollIntoViewOnFocusWithin', () => {
     expect(scrollIntoView).not.toHaveBeenCalled()
 
     // clear all mocks
-    jest.clearAllMocks()
+    vi.clearAllMocks()
 
     const newHasFocusWithin = true
     rerender({hasFocusWithin: newHasFocusWithin})
@@ -54,7 +54,7 @@ describe('useScrollIntoViewOnFocusWithin', () => {
   test('should not scroll when hasFocusWithin changes from true to false', () => {
     const elementRef = {current: document.createElement('div')}
     const hasFocusWithin = true
-    const useDidUpdateSpy = jest.spyOn(useDidUpdate, 'useDidUpdate')
+    const useDidUpdateSpy = vi.spyOn(useDidUpdate, 'useDidUpdate')
 
     const {rerender} = renderHook(
       (props) => useScrollIntoViewOnFocusWithin(elementRef, props.hasFocusWithin),
@@ -67,7 +67,7 @@ describe('useScrollIntoViewOnFocusWithin', () => {
     expect(useDidUpdateSpy.mock.calls[0][0]).toBe(hasFocusWithin)
     expect(scrollIntoView).toHaveBeenCalledTimes(1)
 
-    jest.clearAllMocks()
+    vi.clearAllMocks()
 
     const newHasFocusWithin = false
     rerender({hasFocusWithin: newHasFocusWithin})
@@ -79,7 +79,7 @@ describe('useScrollIntoViewOnFocusWithin', () => {
   test('should not scroll when hasFocusWithin has not changed', () => {
     const elementRef = {current: document.createElement('div')}
     const hasFocusWithin = true
-    const useDidUpdateSpy = jest.spyOn(useDidUpdate, 'useDidUpdate')
+    const useDidUpdateSpy = vi.spyOn(useDidUpdate, 'useDidUpdate')
 
     const {rerender} = renderHook(
       (props) => useScrollIntoViewOnFocusWithin(elementRef, props.hasFocusWithin),
@@ -92,7 +92,7 @@ describe('useScrollIntoViewOnFocusWithin', () => {
     expect(useDidUpdateSpy.mock.calls[0][0]).toBe(hasFocusWithin)
     expect(scrollIntoView).toHaveBeenCalledTimes(1)
 
-    jest.clearAllMocks()
+    vi.clearAllMocks()
 
     const newHasFocusWithin = true
     rerender({hasFocusWithin: newHasFocusWithin})

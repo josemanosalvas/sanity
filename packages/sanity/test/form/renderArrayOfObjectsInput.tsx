@@ -1,6 +1,6 @@
-import {jest} from '@jest/globals'
 import {type ArraySchemaType, type FieldDefinition} from '@sanity/types'
 import {type ReactElement} from 'react'
+import {jest} from 'vitest'
 
 import {
   type ArrayOfObjectsFormNode,

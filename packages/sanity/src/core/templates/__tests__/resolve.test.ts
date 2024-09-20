@@ -1,7 +1,7 @@
-import {beforeEach, describe, expect, jest, test} from '@jest/globals'
 import {Schema as SchemaBuilder} from '@sanity/schema'
 import {type InitialValueResolverContext} from '@sanity/types'
 import {omit} from 'lodash'
+import {beforeEach, describe, expect, test, vi} from 'vitest'
 
 import {type resolveInitialValue as resolveInitialValueType, type Template} from '../'
 import {schema} from './schema'
@@ -9,8 +9,8 @@ import {schema} from './schema'
 let resolveInitialValue: typeof resolveInitialValueType
 
 beforeEach(() => {
-  jest.resetModules()
-  jest.clearAllMocks()
+  vi.resetModules()
+  vi.clearAllMocks()
 
   resolveInitialValue = require('../').resolveInitialValue
 })
@@ -340,7 +340,7 @@ describe('resolveInitialValue', () => {
   })
 
   describe('memoizes function calls', () => {
-    const initialValue = jest.fn().mockReturnValue('Name')
+    const initialValue = vi.fn().mockReturnValue('Name')
 
     const testSchema = SchemaBuilder.compile({
       name: 'default',

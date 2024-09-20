@@ -1,4 +1,3 @@
-import {jest} from '@jest/globals'
 import {type SanityClient} from '@sanity/client'
 import {
   defineType,
@@ -10,6 +9,7 @@ import {
 } from '@sanity/types'
 import {render} from '@testing-library/react'
 import {type FocusEvent, type ReactElement, type RefObject} from 'react'
+import {jest} from 'vitest'
 
 import {
   createPatchChannel,

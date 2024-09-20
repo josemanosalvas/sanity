@@ -1,6 +1,6 @@
-import {describe, expect, test} from '@jest/globals'
 import {renderHook} from '@testing-library/react'
 import {type ObjectSchemaType, shouldArrayDialogOpen} from 'sanity'
+import {describe, expect, test} from 'vitest'
 
 describe('shouldArrayDialogOpen', () => {
   test('should return false if its in the base document (path [])', () => {

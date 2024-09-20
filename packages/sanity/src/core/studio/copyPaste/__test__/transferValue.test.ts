@@ -1,6 +1,6 @@
-import {beforeAll, beforeEach, describe, expect, jest, test} from '@jest/globals'
 import {type TypedObject} from '@sanity/types'
 import {omit} from 'lodash'
+import {beforeAll, beforeEach, describe, expect, test, vi} from 'vitest'
 
 import {resolveSchemaTypeForPath} from '../resolveSchemaTypeForPath'
 import {transferValue} from '../transferValue'
@@ -8,8 +8,8 @@ import {createMockClient} from './mockClient'
 import {schema} from './schema'
 
 beforeEach(() => {
-  jest.resetModules()
-  jest.clearAllMocks()
+  vi.resetModules()
+  vi.clearAllMocks()
 })
 
 beforeAll(() => {

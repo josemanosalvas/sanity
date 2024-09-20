@@ -1,13 +1,13 @@
-import {beforeEach, describe, expect, it, jest} from '@jest/globals'
 import {renderHook} from '@testing-library/react'
+import {beforeEach, describe, expect, it, vi} from 'vitest'
 
 import {TasksEnabledProvider} from './TasksEnabledProvider'
 import {useTasksEnabled} from './useTasksEnabled'
 
-jest.mock('../../../hooks', () => {
+vi.mock('../../../hooks', () => {
   // eslint-disable-next-line @typescript-eslint/consistent-type-imports
-  const actual: typeof import('../../../hooks') = jest.requireActual('../../../hooks')
-  const mock = jest.fn()
+  const actual: typeof import('../../../hooks') = vi.requireActual('../../../hooks')
+  const mock = vi.fn()
 
   return new Proxy(actual, {
     get: (target, property: keyof typeof actual) => {
@@ -17,10 +17,10 @@ jest.mock('../../../hooks', () => {
   })
 })
 
-jest.mock('../../../studio', () => {
+vi.mock('../../../studio', () => {
   // eslint-disable-next-line @typescript-eslint/consistent-type-imports
-  const actual: typeof import('../../../studio') = jest.requireActual('../../../studio')
-  const mock = jest.fn()
+  const actual: typeof import('../../../studio') = vi.requireActual('../../../studio')
+  const mock = vi.fn()
 
   return new Proxy(actual, {
     get: (target, property: keyof typeof actual) => {
@@ -32,7 +32,7 @@ jest.mock('../../../studio', () => {
 
 describe('TasksEnabledProvider', () => {
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
 
   it('should not show tasks if user opt out and the feature is not enabled (any plan)', () => {
