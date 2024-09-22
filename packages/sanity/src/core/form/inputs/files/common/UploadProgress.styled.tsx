@@ -1,8 +1,9 @@
-import {Card, Code, Flex, Stack} from '@sanity/ui'
+import {Code, Flex, Stack} from '@sanity/ui'
 import {styled} from 'styled-components'
 
-export const CardWrapper = styled(Card)`
-  min-height: 82px;
+import {RatioBox} from '../ImageInput/ImagePreview.styled'
+
+export const CardWrapper = styled(RatioBox)`
   box-sizing: border-box;
 `
 
